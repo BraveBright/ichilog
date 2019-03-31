@@ -1,0 +1,121 @@
+/* Variables */
+:root {
+	font-size: 10px;
+	--color-main: orangered;
+	--box-shadow-default: 0 2px 2px 0 rgba(0,0,0,.2), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.2);
+}
+
+* {
+	font-family: 'Noto Sans JP', sans-serif;
+}
+
+/* Overwrap Useragent Styles */
+
+a {
+	color: var(--color-main);
+	text-decoration: inherit;
+}
+
+p {
+	font-size: 1.4rem
+}
+
+ul {
+	list-style-type: none;
+	margin-block-start: unset;
+	margin-block-end: unset;
+	padding-inline-start: unset;
+}
+
+h1 {
+	font-size: 2.4rem;
+}
+
+h2 {
+	font-size: 2.2rem;
+}
+
+h3 {
+	font-size: 2rem;
+	margin-block-start: unset;
+	margin-block-end: unset;
+}
+
+h4 {
+	font-size: 1.8rem;
+}
+
+h5 {
+	font-size: 1.6rem;
+}
+
+blockquote {
+	margin-block-start: 10px;
+	margin-block-end: 10px;
+	margin-inline-start: 20px;
+	margin-inline-end: 40px;
+	border-left: solid 4px #999;
+	padding-left: 16px;
+}
+
+code {
+	font-family: monospace;
+	background-color: rgba(0,0,0,.1);
+	margin-inline-start: .5rem;
+	padding-inline-start: .5rem;
+	margin-inline-end: .5rem;
+	padding-inline-end: .5rem;
+	border-radius: 4px;
+}
+
+/* General Styles */
+
+header {
+	background-color: var(--color-main);
+	box-shadow: var(--box-shadow-default);
+	position: relative;
+}
+
+header p {
+	font-weight: 700;
+	font-size: 2.4rem;
+	letter-spacing: .4rem;
+	display: inline-block;
+	margin-left: 2.4em;
+}
+
+header p > a {
+	color: white;
+}
+
+article {
+	background-color: #F8F8F8;
+	min-height: calc( 100vh - 20px );
+}
+
+#main {
+	margin: 0 auto 20px;
+	padding-top: 40px;
+	width: calc(100% - 40px);
+	max-width: 1200px;
+}
+
+.article {
+	border-radius: 5px;
+	box-shadow: var(--box-shadow-default);
+	padding: 10px 40px;
+}
+
+/* For index.html Styles */
+.articles {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.articles > li {
+	width: calc(100% / 3 - 10px);
+	box-shadow: var(--box-shadow-default);
+	border-radius: 5px;
+	padding: 10px;
+}

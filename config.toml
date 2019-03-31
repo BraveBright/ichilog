@@ -1,0 +1,10 @@
+# baseURL = "http://localhost:1313"
+baseURL = "https://blog.ichi.tech/"
+# themes = "KeepIt"
+theme = "ichilog"
+# languageCode = "ja"
+# defaultContentLanguage = "ja"
+title = "ICHILOG"
+
+[Params]
+test_params = "TEST PARAMS!"
