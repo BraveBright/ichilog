@@ -3,28 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://blog.ichi.tech/</loc>
+    <loc>http://blog.ichi.tech/</loc>
     <lastmod>2018-12-05T06:29:59+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.ichi.tech/test2/</loc>
+    <loc>http://blog.ichi.tech/test2/</loc>
     <lastmod>2018-12-05T06:29:59+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://blog.ichi.tech/test/</loc>
+    <loc>http://blog.ichi.tech/test/</loc>
     <lastmod>2018-11-28T02:54:23+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://blog.ichi.tech/categories/</loc>
+    <loc>http://blog.ichi.tech/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.ichi.tech/tags/</loc>
+    <loc>http://blog.ichi.tech/tags/</loc>
     <priority>0</priority>
   </url>
   

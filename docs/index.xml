@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ICHILOG</title>
-    <link>https://blog.ichi.tech/</link>
+    <link>http://blog.ichi.tech/</link>
     <description>Recent content on ICHILOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Wed, 05 Dec 2018 06:29:59 +0000</lastBuildDate>
     
-	<atom:link href="https://blog.ichi.tech/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://blog.ichi.tech/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Test2</title>
-      <link>https://blog.ichi.tech/test2/</link>
+      <link>http://blog.ichi.tech/test2/</link>
       <pubDate>Wed, 05 Dec 2018 06:29:59 +0000</pubDate>
       
-      <guid>https://blog.ichi.tech/test2/</guid>
+      <guid>http://blog.ichi.tech/test2/</guid>
       <description> Hello Hugo!!! </description>
     </item>
     
     <item>
       <title>テスト投稿</title>
-      <link>https://blog.ichi.tech/test/</link>
+      <link>http://blog.ichi.tech/test/</link>
       <pubDate>Wed, 28 Nov 2018 02:54:23 +0000</pubDate>
       
-      <guid>https://blog.ichi.tech/test/</guid>
+      <guid>http://blog.ichi.tech/test/</guid>
       <description>これはHugoでのテスト投稿です。
  引用は こんな 感じ
  Hugoサーバ起動コマンドはhugo server --watchです。
