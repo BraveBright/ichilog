@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ICHILOG on ICHILOG</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content in ICHILOG on ICHILOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 05 Dec 2018 06:29:59 +0000</lastBuildDate>
+    <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Test2</title>
+      <link>http://localhost:1313/test2/</link>
+      <pubDate>Wed, 05 Dec 2018 06:29:59 +0000</pubDate>
+      
+      <guid>http://localhost:1313/test2/</guid>
+      <description>
+
+&lt;h2 id=&#34;hello-hugo&#34;&gt;Hello Hugo!!!&lt;/h2&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>テスト投稿</title>
+      <link>http://localhost:1313/test/</link>
+      <pubDate>Wed, 28 Nov 2018 02:54:23 +0000</pubDate>
+      
+      <guid>http://localhost:1313/test/</guid>
+      <description>&lt;p&gt;これはHugoでのテスト投稿です。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;引用は
+こんな
+感じ&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Hugoサーバ起動コマンドは&lt;code&gt;hugo server --watch&lt;/code&gt;です。&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;イタリックはこんな感じ&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ボールドはこんな感じ&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;水平線はこれ&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.google.co.jp/&#34;&gt;Google&lt;/a&gt;へのリンクはこうなる。&lt;/p&gt;
+
+&lt;p&gt;以上！&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;AAA
+
+&lt;ul&gt;
+&lt;li&gt;BBB&lt;/li&gt;
+&lt;li&gt;BBB&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;AAA
+
+&lt;ul&gt;
+&lt;li&gt;BBB&lt;/li&gt;
+&lt;li&gt;BBB&lt;/li&gt;
+&lt;li&gt;CCC&lt;/li&gt;
+&lt;li&gt;BBB&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;AAA&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
