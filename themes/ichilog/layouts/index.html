@@ -1,6 +1,6 @@
 {{ partial "header.html" . }}
 	<div id="main">
-		<p>Hello World to Ichilog!!</p>
+		<p>Welcome to Ichilog!!</p>
 		<ul class="articles">
 			{{ range (.Paginator 10).Pages }}
 			{{ .Render "list" }}

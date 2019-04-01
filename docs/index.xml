@@ -5,35 +5,22 @@
     <link>https://blog.ichi.tech/</link>
     <description>Recent content on ICHILOG</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 05 Dec 2018 06:29:59 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 01 Apr 2019 23:32:00 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.ichi.tech/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Test2</title>
-      <link>https://blog.ichi.tech/test2/</link>
-      <pubDate>Wed, 05 Dec 2018 06:29:59 +0000</pubDate>
+      <title>Hello World!</title>
+      <link>https://blog.ichi.tech/hello/</link>
+      <pubDate>Mon, 01 Apr 2019 23:32:00 +0900</pubDate>
       
-      <guid>https://blog.ichi.tech/test2/</guid>
-      <description> Hello Hugo!!! </description>
-    </item>
-    
-    <item>
-      <title>テスト投稿</title>
-      <link>https://blog.ichi.tech/test/</link>
-      <pubDate>Wed, 28 Nov 2018 02:54:23 +0000</pubDate>
-      
-      <guid>https://blog.ichi.tech/test/</guid>
-      <description>これはHugoでのテスト投稿です。
- 引用は こんな 感じ
- Hugoサーバ起動コマンドはhugo server --watchです。
-イタリックはこんな感じ
-ボールドはこんな感じ
-水平線はこれ
-Googleへのリンクはこうなる。
-以上！
- AAA  BBB BBB  AAA  BBB BBB CCC BBB  AAA  </description>
+      <guid>https://blog.ichi.tech/hello/</guid>
+      <description>始めまして！bravebrightと申します🙇
+いまは見習いエンジニアとして勉強中で、日々色々なことを調べているうちに「あれ、この情報ぜんぜんネットにないな…」とか「これ日本語の情報が見当たらないな」という場面によく出会うようになりました。
+思い立ったが吉日、自ら情報発信してこそ一人前のエンジニア！（？）ということも小耳に挟んだことですし、思い切ってブログを立ち上げることにしました。
+ブログ名は ICHILOG という名前にしました。由来は…特にありません！笑
+これから少しでも誰かの役に立てるようなものを残していけたら良いなと思っています。</description>
     </item>
     
   </channel>
