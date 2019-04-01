@@ -1,0 +1,10 @@
+{{ partial "header.html" . }}
+	<div id="main">
+		<p>Hello Section page!!</p>
+		<ul class="articles">
+			{{ range (.Paginator 10).Pages }}
+			{{ .Render "list" }}
+			{{ end }}
+		</ul>
+	</div>
+{{ partial "footer.html" . }}

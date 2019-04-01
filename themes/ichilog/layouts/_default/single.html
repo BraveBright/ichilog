@@ -1,13 +1,26 @@
 {{ partial "header.html" . }}
-        <div id="main">
-		<div class="article">
-			<div class="article-header">
-				<h1 class="title">{{ .Title }}</h1>
-				<p class="date">{{ .Date.Format "2006/01/02" }}</p>
-			</div>
-			<div class="article-content">
-				{{ .Content }}
-			</div>
-		</div>
-        </div>
+  <div id="main">
+    <div class="article">
+      <div class="article-header">
+        <h1 class="title">{{ .Title }}</h1>
+        <p class="date">{{ .Date.Format "2006/01/02" }}</p>
+      </div>
+      <div class="article-content">
+        {{ .Content }}
+      </div>
+    </div>
+    <div class="pagenator">
+      {{ with .Prev }}
+        <a href="{{ .Permalink }}">Prev</a>
+      {{ else }}
+        <a>Prev</a>
+      {{ end }}
+
+      {{ with .Next }}
+        <a href="{{ .Permalink }}">Next</a>
+      {{ else }}
+        <a>Next</a>
+      {{ end }}
+    </div>
+  </div>
 {{ partial "footer.html" . }}
