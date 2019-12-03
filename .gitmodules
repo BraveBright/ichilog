@@ -1,6 +1,6 @@
 [submodule "content"]
 	path = content
-	url = git@github.com:bravebright/ichilog-content.git
+	url = git://github.com:bravebright/ichilog-content.git
 [submodule "themes/tale"]
 	path = themes/tale
-	url = git@github.com:EmielH/tale-hugo.git
+	url = git://github.com:EmielH/tale-hugo.git
