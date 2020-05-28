@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+  builder:
+    image: klakegg/hugo:0.71.0
+    container_name: "icilog-builder"
+    user: ${HUGO_UID}:${HUGO_GID}
+    environment:
+      HUGO_DESTINATION: "/src/docs"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./:/src:rw
+    network_mode: "none"
+  server:
+    image: klakegg/hugo:0.71.0
+    container_name: "ichilog-server"
+    user: root:root
+    command: ["server","-w","-p","80"]
+    environment:
+      HUGO_BIND: "0.0.0.0"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./:/src:ro
+    network_mode: "host"

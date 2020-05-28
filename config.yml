@@ -1,0 +1,6 @@
+baseUrl: "https://blog.ichi.tech/"
+title: "ICHILOG"
+theme: "tale"
+destination: "/src/target"
+port: "8080"
+
