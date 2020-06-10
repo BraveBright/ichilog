@@ -3,7 +3,7 @@ services:
   builder:
     image: klakegg/hugo:0.71.0
     container_name: "icilog-builder"
-    user: ${HUGO_UID}:${HUGO_GID}
+    user: ${HUGO_UID:-1000}:${HUGO_GID:-1000}
     environment:
       HUGO_DESTINATION: "/src/docs"
     volumes:
