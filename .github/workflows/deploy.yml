@@ -1,0 +1,15 @@
+name: "HUGO Deploy"
+
+on:
+  push:
+    branches:
+      - actions-test
+
+jobs:
+  practice:
+    runs-on: ubuntu-20.04
+    steps:
+      - run: cat /etc/os-release
+      - run: docker --version
+      - run: docker-compose --version
+      - run: docker images
