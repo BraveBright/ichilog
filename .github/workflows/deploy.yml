@@ -13,3 +13,8 @@ jobs:
       - run: docker --version
       - run: docker-compose --version
       - run: docker images
+  practice2:
+    runs-on: ubuntu-20.04
+    container: ubuntu:18.04
+    steps:
+      - run: cat /etc/os-release
