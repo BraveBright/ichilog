@@ -24,10 +24,10 @@ jobs:
       - uses: actions/checkout@v2
         with:
           repository: bravebright/ichilog
-          depth: 1
-          submodule: true
+          fetch-depth: 1
+          submodules: true
           path: ichilog
-          token: ${{ secrets.GitHub_PAT }}
+          token: ${{ secrets.ACTIONS_PAT }}
       - run: whoami && id
       - run: ls -lah ./ichilog/docs/
       - run: docker-compose run --rm -f ./ichilog/docker-compose.yml builder
