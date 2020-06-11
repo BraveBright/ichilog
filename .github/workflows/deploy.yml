@@ -18,6 +18,13 @@ jobs:
     container: ubuntu:18.04
     steps:
       - run: cat /etc/os-release
+  check:
+    runs-on: ubuntu-20.04
+    steps:
+      - run: whoami
+      - run: id
+      - run: docker --version
+      - run: docker-compose --version
   build-hugo:
     runs-on: ubuntu-20.04
     steps:
@@ -28,7 +35,6 @@ jobs:
           submodules: true
           path: ichilog
           token: ${{ secrets.ACTIONS_PAT }}
-      - run: whoami && id
       - run: ls -lah ./ichilog/docs/
-      - run: docker-compose run --rm -f ./ichilog/docker-compose.yml builder
+      - run: HUGO_UID=$(id -u) HUGO_GID-$(id -g) docker-compose -f ./ichilog/docker-compose.yml run --rm builder
       - run: ls -lah ./ichilog/docs/
