@@ -20,7 +20,14 @@ jobs:
       - run: cat /etc/os-release
   build-hugo:
     runs-on: ubuntu-20.04
-    setps:
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: bravebright/ichilog
+          depth: 1
+          submodule: true
+          path: ichilog
+          token: ${{ secrets.GitHub_PAT }}
       - run: whoami && id
       - run: ls -lah ./ichilog/docs/
       - run: docker-compose run --rm -f ./ichilog/docker-compose.yml builder
