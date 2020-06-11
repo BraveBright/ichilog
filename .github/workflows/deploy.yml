@@ -36,5 +36,5 @@ jobs:
           path: ichilog
           token: ${{ secrets.ACTIONS_PAT }}
       - run: ls -lah ./ichilog/docs/
-      - run: HUGO_UID=$(id -u) HUGO_GID-$(id -g) docker-compose -f ./ichilog/docker-compose.yml run --rm builder
+      - run: HUGO_UID=$(id -u) HUGO_GID=$(id -g) docker-compose -f ./ichilog/docker-compose.yml run --rm builder
       - run: ls -lah ./ichilog/docs/
