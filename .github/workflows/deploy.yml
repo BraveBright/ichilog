@@ -18,3 +18,10 @@ jobs:
     container: ubuntu:18.04
     steps:
       - run: cat /etc/os-release
+  build-hugo:
+    runs-on: ubuntu-20.04
+    setps:
+      - run: whoami && id
+      - run: ls -lah ./ichilog/docs/
+      - run: docker-compose run --rm -f ./ichilog/docker-compose.yml builder
+      - run: ls -lah ./ichilog/docs/
