@@ -40,7 +40,7 @@ jobs:
       - run: git add ./docs
       - name: Add git config
         run: |
-          git config -l user.email "actions@github.com"
-          git config -l user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
       - run: git commit -m "update docs use commit $(git log -n 1 --format=%H)"
       - run: git log -n 2
