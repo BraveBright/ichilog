@@ -4,7 +4,7 @@ on:
   push:
     branches:
       # - actions-test
-      - '!master'
+      - !master
 
 jobs:
   # practice:
