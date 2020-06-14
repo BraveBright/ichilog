@@ -3,8 +3,8 @@ name: "HUGO Deploy"
 on:
   push:
     branches:
-      # - actions-test
-      - !master
+      - actions-test
+      # - !master
 
 jobs:
   # practice:
