@@ -35,7 +35,8 @@ jobs:
           submodules: true
           path: ichilog
           token: ${{ secrets.ACTIONS_PAT }}
-      - run: HUGO_UID=$(id -u) HUGO_GID=$(id -g) docker-compose -f ./ichilog/docker-compose.yml run --rm builder
+      - run: cd ./ichilog/
+      - run: HUGO_UID=$(id -u) HUGO_GID=$(id -g) docker-compose -f ./docker-compose.yml run --rm builder
       - run: git status
       - run: git add ./docs
       - run: git commit -m "update docs use commit $(git log -n 1 --format=%H)"
