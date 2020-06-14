@@ -3,21 +3,22 @@ name: "HUGO Deploy"
 on:
   push:
     branches:
-      - actions-test
+      # - actions-test
+      - '!master'
 
 jobs:
-  practice:
-    runs-on: ubuntu-20.04
-    steps:
-      - run: cat /etc/os-release
-      - run: docker --version
-      - run: docker-compose --version
-      - run: docker images
-  practice2:
-    runs-on: ubuntu-20.04
-    container: ubuntu:18.04
-    steps:
-      - run: cat /etc/os-release
+  # practice:
+  #   runs-on: ubuntu-20.04
+  #   steps:
+  #     - run: cat /etc/os-release
+  #     - run: docker --version
+  #     - run: docker-compose --version
+  #     - run: docker images
+  # practice2:
+  #   runs-on: ubuntu-20.04
+  #   container: ubuntu:18.04
+  #   steps:
+  #     - run: cat /etc/os-release
   check:
     runs-on: ubuntu-20.04
     steps:
@@ -25,6 +26,7 @@ jobs:
       - run: id
       - run: docker --version
       - run: docker-compose --version
+      - run: hub version
   build-hugo:
     runs-on: ubuntu-20.04
     steps:
