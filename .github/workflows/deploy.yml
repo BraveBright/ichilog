@@ -3,8 +3,9 @@ name: "HUGO Deploy"
 on:
   push:
     branches:
-      - actions-test
-      # - !master
+      # - actions-test
+      - '*'
+      - '!master'
 
 jobs:
   # practice:
@@ -27,6 +28,7 @@ jobs:
       - run: docker --version
       - run: docker-compose --version
       - run: hub version
+      - run: hub pull-request --help
   build-hugo:
     runs-on: ubuntu-20.04
     steps:
