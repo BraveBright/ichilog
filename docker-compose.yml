@@ -1,9 +1,21 @@
 version: "3.7"
 services:
+  hugo:
+    image: klakegg/hugo:0.71.0
+    container_name: "ichilog-hugo"
+    user: ${HUGO_UID:-1000}:${HUGO_GID:-1000}
+    command: ["help"]
+    environment:
+      HUGO_DESTINATION: "/src/docs"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./:/src:rw
+    network_mode: "none"
   builder:
     image: klakegg/hugo:0.71.0
     container_name: "icilog-builder"
     user: ${HUGO_UID:-1000}:${HUGO_GID:-1000}
+    command: ["--cleanDestinationDir"]
     environment:
       HUGO_DESTINATION: "/src/docs"
     volumes:
@@ -14,7 +26,7 @@ services:
     image: klakegg/hugo:0.71.0
     container_name: "ichilog-server"
     user: root:root
-    command: ["server","-w","-p","80"]
+    command: ["server","-w","-D","-p","80"]
     environment:
       HUGO_BIND: "0.0.0.0"
     volumes:

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>マルチOS対応Docker開発環境の作り方【docker-compose編】 &middot; ICHILOG</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="ICHILOG" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">ICHILOG</h2>
+				</a>
+				<ul>
+    
+    
+        <li>
+            <a href="/about/">
+                
+                <span>About</span>
+                
+            </a>
+        </li>
+    
+        <li>
+            <a href="/tech/">
+                
+                <span>TECH</span>
+                
+            </a>
+        </li>
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        
+        <br>
+        <span>on&nbsp;</span><time datetime="2019-12-12 00:00:00 &#43;0900 JST">December 12, 2019</time>
+</div>
+		<h1 class="post-title">マルチOS対応Docker開発環境の作り方【docker-compose編】</h1>
+<div class="post-line"></div>
+
+		
+
+		<p>この投稿は <a href="https://adventar.org/calendars/4213">Magento Advent Calendar 2019</a> の12日目です。</p>
+<p><a href="https://qiita.com/bravebright9/items/f575073d8bae427f5076">前回</a>でDocker for MacのVolumeの問題を解決出来たので、今度はそれをマルチOSにどう対応させていくかというお話です。</p>
+<p>OSが異なるとdocker-composeの設定が違ってくるし、なんなら開発者ごとにも設定が異なってきますよね。
+「今はdebugモードで起動したい」や「こっちの設定ファイルを使って起動させおきたい」なんてこともよくあります。</p>
+<p>基本的なdocker-compose.ymlは同じでいいけど、細かな部分を個々に編集しやすくしたい。そんなときにおすすめな方法が…</p>
+<p><strong>docker-compose.override.yml</strong> と <strong>env_file</strong> です！</p>
+<h2 id="docker-composeoverrideyml">docker-compose.override.yml</h2>
+<p>そもそも <code>docker-compose</code> コマンドでは <code>-f</code> オプションを複数使うことによって、複数の設定ファイルを合体させて使うことが可能です。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">docker-compose -f docker-compose.1.yml -f docker-compose.2.yml -f docker-compose.3.yml [COMMAND]
+</code></pre></div><blockquote>
+<p><a href="https://docs.docker.com/compose/extends/#multiple-compose-files">Multiple Compose files</a> （公式ドキュメント）</p>
+</blockquote>
+<p>ただ…とても長くなって打つのが大変ではありませんか？（docker-composeだけで14文字もありますし…:joy:）
+私は毎回これ打つのは嫌ですね！</p>
+<p>では<strong>docker-compose.override.yml</strong>とはなんなのか。
+実は、<code>docker-compose</code> コマンドはデフォルトで <code>docker-compose.yml</code> と <code>docker-compose.override.yml</code> を読み込むようになっています。</p>
+<p>つまり！</p>
+<ul>
+<li><code>docker-compose.yml</code> を共通のベース設定ファイルにする</li>
+<li><code>docker-compose.override.yml</code> を環境ごとに変更してもらう</li>
+</ul>
+<p>こうすることで、実行時は <code>docker-compose [COMMAND]</code> と打つだけで、環境ごとに対応させることが可能になります！</p>
+<p>例としてApache2コンテナを立てる <code>docker-compose.yml</code> を作ってみましょう。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml:docker-compose.yml" data-lang="yaml:docker-compose.yml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#34;3&#34;</span>
+<span style="color:#66d9ef">services</span>:
+  <span style="color:#66d9ef">apache</span>:
+    <span style="color:#66d9ef">image</span>: apache:<span style="color:#ae81ff">7.3</span>-apache
+    <span style="color:#66d9ef">volumes</span>:
+      - {PASS_TO_PROJECTROOT}:/var/www/html
+</code></pre></div><p>LinuxやWindowsユーザーにはたったこれだけで十分ですよね。
+これをさらにdocker-syncにも対応させられるようにしたい、そんなときには <code>docker-compose.override.yml.sample</code> を作成して</p>
+<pre><code class="language-yaml:docker-compose.yml.sample" data-lang="yaml:docker-compose.yml.sample">version: &quot;3&quot;
+services:
+  apache:
+    volumes:
+      - src:/var/www/html
+volumes:
+  src:
+    external: true
+</code></pre><p>このように上書きしたい部分だけを書いていきます。</p>
+<p>このsampleファイルをgitで管理させて、逆に<code>.gitignore</code>に<code>docker-compose.override.yml</code>を追加しておきます。
+これでdocker-syncが必要な開発者に <code>docker-compose.override.yml</code> にリネームして使ってもらえば、必要な開発者にのみdocker-syncが使えますよね！</p>
+<p><a href="https://qiita.com/bravebright9/items/f575073d8bae427f5076#docker-sync">前回同様</a>にdocker-sync.ymlも作成したら、 <code>docker-compose run --rm apache bash</code> してコンテナ内でベンチマークを取ってみましょう。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">root@fac0c26e95f7:/var/www/html# time dd if=/dev/zero of=$PWD/benchmark bs=1k count=100000
+100000+0 records in
+100000+0 records out
+102400000 bytes (102 MB, 98 MiB) copied, 0.326605 s, 314 MB/s
+
+real	0m0.329s
+user	0m0.050s
+sys 	0m0.270s
+</code></pre></div><p>はい！結果から明らかにDocker-syncで同期されていますね:thumbsup:</p>
+<h2 id="env_file">env_file</h2>
+<p>公式のDockerイメージを使っていると、よく環境変数で起動時の設定を変更できる仕組みになっているものがあると思います。
+たとえば<a href="https://hub.docker.com/_/mysql">MySQLイメージ</a>だと、 <code>MYSQL_ROOT_PASSWORD</code> でrootユーザーのパスワードや <code>MYSQL_USER</code>、 <code>MYSQL_PASSWORD</code> でユーザーを作成することが出来ますよね。</p>
+<p>これって開発者ごとに値を変えたくありませんか？</p>
+<p>そういうときには <code>docker-compose.yml</code> 内で <strong>env_file</strong> オプションを使ってみましょう。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml:docker-compose.yml" data-lang="yaml:docker-compose.yml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#34;3&#34;</span>
+<span style="color:#66d9ef">services</span>:
+  <span style="color:#66d9ef">mysql</span>:
+    <span style="color:#66d9ef">images</span>: mysql:<span style="color:#ae81ff">5.7</span>
+    <span style="color:#66d9ef">env_file</span>:
+      - mysql.env
+</code></pre></div><blockquote>
+<p><a href="https://docs.docker.com/compose/environment-variables/#the-env_file-configuration-option">The “env_file” configuration option</a> （公式ドキュメント）</p>
+</blockquote>
+<p>そして指定した <code>mysql.env</code> ファイルを作って、中に環境変数を書いていきます。</p>
+<pre><code class="language-plaintext:mysql.env" data-lang="plaintext:mysql.env">MYSQL_ROOT_PASSWORD=password
+MYSQL_USER=dbuser
+MYSQL_PASSWORD=password
+</code></pre><p>これでMySQLコンテナを起動してみましょう！</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-compose up -d mysql
+$ docker-compose exec mysql mysql -u dbuser -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or <span style="color:#ae81ff">\g</span>.
+Your MySQL connection id is <span style="color:#ae81ff">3</span>
+Server version: 5.7.28 MySQL Community Server <span style="color:#f92672">(</span>GPL<span style="color:#f92672">)</span>
+
+Copyright <span style="color:#f92672">(</span>c<span style="color:#f92672">)</span> 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type <span style="color:#e6db74">&#39;help;&#39;</span> or <span style="color:#e6db74">&#39;\h&#39;</span> <span style="color:#66d9ef">for</span> help. Type <span style="color:#e6db74">&#39;\c&#39;</span> to clear the current input statement.
+
+mysql&gt;
+</code></pre></div><p>ちゃんと起動もして、dbuserでログインも出来ましたね！</p>
+<p>こちらも <code>mysql.env.sample</code> のようにサンプルファイルを用意しておいて、コピー＆リネームして使ってもらえば便利かなと思っています。</p>
+<h2 id="まとめ">まとめ</h2>
+<p>これで基本的な設定はsampleファイルとしてGitで管理させ、各開発者に細かいところは好きにいじってもらえる柔軟性も持たせることが出来ました。</p>
+<p>実際、以前にMagento2のプロジェクトをDockerで開発環境を作ったときは、「設定はいじらないで」と言ってしまったがゆえに</p>
+<p>「configの設定変えたいんですけど、どうしたらいいですか？」
+「Macだと遅いんだけどVolumeの設定変えても良い？」</p>
+<p>のように使いにくかったようでした。
+その反省を活かして設定を柔軟に変更できるようにした結果、今回のような結論に至ったというわけです。</p>
+<p>Magento Advent Calendarらしからぬ内容でしたが、Magento2のようにプロジェクトのファイル数が多いものはRead/Writeの回数がとても多くなります。
+マルチOSに対応したDocker開発環境を作るには<code>docker-compose.override.yml</code>や<code>env_file</code>はとても便利ですので、Magento開発者に限らずぜひ使ってみてください！</p>
+<p>（これで社内にDockerが普及すると良いな:sunglasses:）</p>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/tech/howto-make-multios-compatible-docker-local-develop-environment-1/" class="left arrow">&#8592;</a>
+		<a href="/about/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			<span>
+			&copy; <time datetime="2020-08-05 23:08:46.283023139 &#43;0900 JST m=&#43;0.064079596">2020</time> . Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Magento2 on ICHILOG</title>
+    <link>https://blog.ichi.tech/tags/magento2/</link>
+    <description>Recent content in Magento2 on ICHILOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 12 Dec 2019 00:00:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.ichi.tech/tags/magento2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>マルチOS対応Docker開発環境の作り方【docker-compose編】</title>
+      <link>https://blog.ichi.tech/tech/howto-make-multios-compatible-docker-local-develop-environment-2/</link>
+      <pubDate>Thu, 12 Dec 2019 00:00:00 +0900</pubDate>
+      
+      <guid>https://blog.ichi.tech/tech/howto-make-multios-compatible-docker-local-develop-environment-2/</guid>
+      <description>この投稿は Magento Advent Calendar 2019 の12日目です。 前回でDocker for MacのVolumeの問題を解決出来たので、今度はそれをマルチOSにどう対応させていくかというお話です。 OSが異なるとdocker-compose</description>
+    </item>
+    
+  </channel>
+</rss>

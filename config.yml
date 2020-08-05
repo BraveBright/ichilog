@@ -3,4 +3,6 @@ title: "ICHILOG"
 theme: "tale"
 destination: "/src/target"
 port: "8080"
-
+# enableGitInfo: true
+hasCJKLanguage: true
+summaryLength: 100
