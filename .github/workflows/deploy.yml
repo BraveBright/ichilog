@@ -6,6 +6,7 @@ on:
       # - actions-test
       - '*'
       - '!master'
+  workflow_dispatch:
 
 jobs:
   # practice:
