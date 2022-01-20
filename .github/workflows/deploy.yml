@@ -29,7 +29,7 @@ jobs:
       - run: docker --version
       - run: docker-compose --version
       - run: hub version
-      - run: hub pull-request --help
+      - run: gh --version
   build-hugo:
     runs-on: ubuntu-20.04
     steps:
